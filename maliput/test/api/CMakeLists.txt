@@ -17,6 +17,9 @@ ament_add_gtest(rules_speed_limit_test rules_speed_limit_test.cc)
 ament_add_gtest(traffic_lights_test traffic_lights_test.cc)
 ament_add_gtest(type_specific_identifier_test type_specific_identifier_test.cc)
 
+ament_add_gtest(tl_test tl_test.cc)
+
+
 macro(add_dependencies_to_test target)
     if (TARGET ${target})
 
@@ -58,3 +61,5 @@ add_dependencies_to_test(rules_road_rulebook_test)
 add_dependencies_to_test(rules_speed_limit_test)
 add_dependencies_to_test(traffic_lights_test)
 add_dependencies_to_test(type_specific_identifier_test)
+
+add_dependencies_to_test(tl_test)
