@@ -23,7 +23,6 @@ macro(add_dependencies_to_test target)
 
       target_link_libraries(${target}
           common
-          drake::drake
           math
           maliput_test_utilities
       )

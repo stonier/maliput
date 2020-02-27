@@ -32,7 +32,7 @@ macro(add_dependencies_to_test target)
           api
           base
           maliput_test_utilities
-          drake::drake)
+          )
 
     endif()
 endmacro()

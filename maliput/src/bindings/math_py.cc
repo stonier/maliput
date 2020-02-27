@@ -1,4 +1,4 @@
-#include "pybind11/pybind11.h"
+#include <pybind11/pybind11.h>
 
 #include "maliput/math/quaternion.h"
 #include "maliput/math/roll_pitch_yaw.h"
@@ -9,8 +9,11 @@ namespace bindings {
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(math, m) {
-  py::class_<math::Vector3>(m, "Vector3")
+PYBIND11_PLUGIN(math) {
+  py::module m("math");
+
+  py::class_<math::VectorBase<3, math::Vector3>>(m, "VectorBase3");
+  py::class_<math::Vector3, math::VectorBase<3, math::Vector3>>(m, "Vector3")
       .def(py::init<double, double, double>())
       .def("__getitem__", py::overload_cast<std::size_t>(&math::Vector3::operator[]), py::is_operator())
       .def("__eq__", [](const math::Vector3& a, const math::Vector3& b) { return a == b; })
@@ -20,7 +23,8 @@ PYBIND11_MODULE(math, m) {
       .def("y", py::overload_cast<>(&math::Vector3::y))
       .def("z", py::overload_cast<>(&math::Vector3::z));
 
-  py::class_<math::Vector4>(m, "Vector4")
+  py::class_<math::VectorBase<4, math::Vector4>>(m, "VectorBase4");
+  py::class_<math::Vector4, math::VectorBase<4, math::Vector4>>(m, "Vector4")
       .def(py::init<double, double, double, double>())
       .def("__getitem__", py::overload_cast<std::size_t>(&math::Vector4::operator[]), py::is_operator())
       .def("__eq__", [](const math::Vector4& a, const math::Vector4& b) { return a == b; })
@@ -45,6 +49,7 @@ PYBIND11_MODULE(math, m) {
       .def("x", py::overload_cast<>(&math::Quaternion::x))
       .def("y", py::overload_cast<>(&math::Quaternion::y))
       .def("z", py::overload_cast<>(&math::Quaternion::z));
+  return m.ptr();
 }
 
 }  // namespace bindings

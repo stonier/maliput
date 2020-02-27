@@ -1,7 +1,4 @@
-#include "pybind11/eigen.h"
-#include "pybind11/pybind11.h"
-
-#include "drake/math/roll_pitch_yaw.h"
+#include <pybind11/pybind11.h>
 
 #include "maliput/api/junction.h"
 #include "maliput/api/lane.h"
@@ -15,11 +12,12 @@ namespace bindings {
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(api, m) {
+PYBIND11_PLUGIN(api) {
   // TODO(jadecastro) These bindings are work-in-progress. Expose additional
   // Maliput API features, as necessary (see #7918).
 
   // TODO(m-chaturvedi) Add doc when typedefs are parsed (#9599)
+  py::module m("api");
   py::class_<api::RoadGeometryId>(m, "RoadGeometryId")
       .def(py::init<std::string>())
       .def("string", &api::RoadGeometryId::string, py::return_value_policy::reference_internal);
@@ -34,8 +32,13 @@ PYBIND11_MODULE(api, m) {
 
   py::class_<api::LanePositionResult>(m, "LanePositionResult")
       .def(py::init<>())
-      .def(py::init<const api::LanePosition&, const api::GeoPosition&, double>(), py::arg("lane_position"),
-           py::arg("nearest_position"), py::arg("distance"))
+      .def("__init__",
+           [](api::LanePositionResult& instance, const api::LanePosition& lane_pos, const api::GeoPosition& geo_pos,
+              double distance) {
+             new (&instance) api::LanePositionResult{lane_pos, geo_pos, distance};
+           })
+      // .def(py::init<const api::LanePosition&, const api::GeoPosition&, double>(), py::arg("lane_position"),
+      //      py::arg("nearest_position"), py::arg("distance"))
       .def_readwrite("lane_position", &api::LanePositionResult::lane_position)
       .def_readwrite("nearest_position", &api::LanePositionResult::nearest_position)
       .def_readwrite("distance", &api::LanePositionResult::distance);
@@ -87,6 +90,7 @@ PYBIND11_MODULE(api, m) {
       .def("GetOrientation", &api::Lane::GetOrientation)
       .def("length", &api::Lane::length)
       .def("id", &api::Lane::id);
+  return m.ptr();
 }
 
 }  // namespace bindings

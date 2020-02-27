@@ -33,7 +33,7 @@ target_link_libraries(maliput_test_utilities
   common
   math
   geometry_base
-  drake::drake)
+  )
 
 install(
     TARGETS maliput_test_utilities EXPORT ${PROJECT_NAME}-targets

@@ -13,7 +13,7 @@ target_include_directories(api_py
 )
 
 target_link_libraries(api_py
-  PRIVATE api drake::drake
+  PRIVATE api
 )
 
 # math module

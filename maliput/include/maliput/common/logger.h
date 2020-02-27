@@ -72,8 +72,6 @@
 namespace maliput {
 namespace common {
 
-using string_view_t = fmt::basic_string_view<char>;
-
 namespace logger {
 
 /// Logging levels.
@@ -119,7 +117,7 @@ class SinkBase {
 
   /// Log the message
   /// @param msg Is the message to be logged.
-  virtual void log(const string_view_t& msg) = 0;
+  virtual void log(const std::string& msg) = 0;
 
   /// Empty the buffer.
   virtual void flush() = 0;
@@ -132,7 +130,7 @@ class Sink : public SinkBase {
   Sink() = default;
   ~Sink() = default;
 
-  void log(const string_view_t& msg) override { fmt::print(msg); }
+  void log(const std::string& msg) override { fmt::print(msg); }
 
   void flush() override{};
 };
@@ -158,37 +156,37 @@ class Logger {
 
   /// Log the message showing trace level prefix.
   template <typename... Args>
-  void trace(string_view_t fmt, const Args&... args) {
+  void trace(std::string fmt, const Args&... args) {
     log(logger::level::trace, fmt, args...);
   }
 
   /// Log the message showing debug level prefix.
   template <typename... Args>
-  void debug(string_view_t fmt, const Args&... args) {
+  void debug(std::string fmt, const Args&... args) {
     log(logger::level::debug, fmt, args...);
   }
 
   /// Log the message showing info level prefix.
   template <typename... Args>
-  void info(string_view_t fmt, const Args&... args) {
+  void info(std::string fmt, const Args&... args) {
     log(logger::level::info, fmt, args...);
   }
 
   /// Log the message showing warning level prefix.
   template <typename... Args>
-  void warn(string_view_t fmt, const Args&... args) {
+  void warn(std::string fmt, const Args&... args) {
     log(logger::level::warn, fmt, args...);
   }
 
   /// Log the message showing error level prefix.
   template <typename... Args>
-  void error(string_view_t fmt, const Args&... args) {
+  void error(std::string fmt, const Args&... args) {
     log(logger::level::error, fmt, args...);
   }
 
   /// Log the message showing critical level prefix.
   template <typename... Args>
-  void critical(string_view_t fmt, const Args&... args) {
+  void critical(std::string fmt, const Args&... args) {
     log(logger::level::critical, fmt, args...);
   }
   /// @}
@@ -215,7 +213,7 @@ class Logger {
   // @param fmt Is a fmt format string. See https://github.com/fmtlib/fmt.
   // @param args Is an argument list representing objects to be formatted.
   template <typename... Args>
-  void log(logger::level log_level, const string_view_t& fmt, const Args&... args);
+  void log(logger::level log_level, const std::string& fmt, const Args&... args);
 
   // Sink where the messages will be dumped to.
   std::unique_ptr<common::SinkBase> sink_{std::make_unique<common::Sink>()};
@@ -225,12 +223,12 @@ class Logger {
 };
 
 template <typename... Args>
-void Logger::log(logger::level lev, const string_view_t& fmt, const Args&... args) {
+void Logger::log(logger::level lev, const std::string& fmt, const Args&... args) {
   if (lev >= level_) {
-    fmt::memory_buffer msg;
-    format_to(msg, fmt::format(logger::kLevelToMessage.at(lev)));
-    format_to(msg, fmt::format(fmt, args...));
-    sink_->log(to_string(msg));
+    std::string msg;
+    msg += fmt::format(logger::kLevelToMessage.at(lev));
+    msg += fmt::format(fmt, args...);
+    sink_->log((msg));
   }
 }
 

@@ -19,8 +19,7 @@ target_include_directories(geometry_base
 
 target_link_libraries(geometry_base
   PUBLIC
-    api
-    drake::drake)
+    api)
 
 ##############################################################################
 # Tests
