@@ -331,6 +331,7 @@ GTEST_TEST(GeometryBaseRoadGeometryTest, AddingJunctions) {
 }
 
 // Test by-id indexing of Segments and Lanes in RoadGeometry.
+template <typename StrategyT>
 class GeometryBaseRoadGeometryIndexingTest : public ::testing::Test {
  protected:
   enum AttachOperation { kAttachLane, kAttachSegment, kAttachJunction };
@@ -347,7 +348,7 @@ class GeometryBaseRoadGeometryIndexingTest : public ::testing::Test {
                                                         kInertialToBackendFrameTranslation);
   }
 
-  std::unique_ptr<RoadGeometry> road_geometry_;
+  std::unique_ptr<RoadGeometry<StrategyT>> road_geometry_;
 };
 
 TEST_F(GeometryBaseRoadGeometryIndexingTest, Test) {

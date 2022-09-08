@@ -43,6 +43,9 @@ class StrategyBase {
  public:
   virtual ~StrategyBase() = default;
 
+  /// This method is used of any initialization needed by the strategy. Ex: The KDTreeStrategy needs
+  /// to sample the RoadNetwork to create it's points.
+  /// Other strategies might not need it. Ex: BruteForceStrategy doesn't need to initialize anything.
   virtual void Init() = 0;
 
   api::RoadPositionResult ToRoadPosition(const api::InertialPosition& inertial_position,

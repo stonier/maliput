@@ -46,6 +46,7 @@ namespace geometry_base {
 
 class BranchPoint;
 class Lane;
+template <typename StrategyT>
 class RoadGeometry;
 
 /// geometry_base's implementation of api::BranchPoint.
@@ -86,7 +87,8 @@ class BranchPoint : public api::BranchPoint {
   //
   // @pre `road_geometry` is non-null.
   // @pre Parent RoadGeometry has not already been set.
-  void AttachToRoadGeometry(common::Passkey<RoadGeometry>, const api::RoadGeometry* road_geometry);
+  template <typename StrategyT>
+  void AttachToRoadGeometry(common::Passkey<RoadGeometry<StrategyT>>, const api::RoadGeometry* road_geometry);
 
  private:
   // Common implementation for AddABranch() and AddBBranch().

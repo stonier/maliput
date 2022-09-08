@@ -36,13 +36,15 @@ namespace maliput {
 namespace geometry_base {
 namespace test {
 
-api::RoadPositionResult MockRoadGeometry::DoToRoadPosition(const api::InertialPosition&,
+template <typename StrategyT>
+api::RoadPositionResult MockRoadGeometry<StrategyT>::DoToRoadPosition(const api::InertialPosition&,
                                                            const std::optional<api::RoadPosition>&) const {
   MALIPUT_THROW_UNLESS(false);
   MALIPUT_ABORT_MESSAGE("Not implemented.");
 }
 
-std::vector<api::RoadPositionResult> MockRoadGeometry::DoFindRoadPositions(const api::InertialPosition&, double) const {
+template <typename StrategyT>
+std::vector<api::RoadPositionResult> MockRoadGeometry<StrategyT>::DoFindRoadPositions(const api::InertialPosition&, double) const {
   MALIPUT_THROW_UNLESS(false);
   MALIPUT_ABORT_MESSAGE("Not implemented.");
 }

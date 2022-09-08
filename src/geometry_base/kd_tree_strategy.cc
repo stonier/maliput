@@ -99,28 +99,27 @@ maliput::api::LaneId KDTreeStrategy::do_closest_lane(const maliput::math::Vector
   auto lane_id_result = maliput_point.lane_id();
   auto lane_position_result = rg_->ById().GetLane(lane_id_result)->ToLanePosition(inertial_position);
   double min_distance = lane_position_result.distance;
-  const static double KLineraTolerance{1e-12};  // [m]
 
   for (const auto& current_lane : lane_ids) {
     const auto current_lane_position = rg_->ById().GetLane(maliput_point.lane_id())->ToLanePosition(inertial_position);
-    if (current_lane_position.distance - min_distance > KLineraTolerance) {
+    if (current_lane_position.distance - min_distance > KDTreeStrategy::kLinearTolerance) {
       min_distance = current_lane_position.distance;
       lane_position_result = current_lane_position;
       lane_id_result = current_lane;
       continue;
     }
-    if (current_lane_position.distance - min_distance <= -KLineraTolerance) {
+    if (current_lane_position.distance - min_distance <= -KDTreeStrategy::kLinearTolerance) {
       continue;
     }
     if (std::abs(current_lane_position.lane_position.r()) - std::abs(lane_position_result.lane_position.r()) <
-        -KLineraTolerance) {
+        -KDTreeStrategy::kLinearTolerance) {
       min_distance = current_lane_position.distance;
       lane_position_result = current_lane_position;
       lane_id_result = current_lane;
       continue;
     }
     if (std::abs(current_lane_position.lane_position.r()) - std::abs(lane_position_result.lane_position.r()) >
-        KLineraTolerance) {
+        KDTreeStrategy::kLinearTolerance) {
       continue;
     }
   }

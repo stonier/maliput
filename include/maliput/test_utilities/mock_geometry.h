@@ -64,7 +64,8 @@ namespace test {
 /// Test implementors may re-implement methods as they see fit.
 
 /// Mock api::RoadGeometry implementation; see mock_geometry.h.
-class MockRoadGeometry : public geometry_base::RoadGeometry {
+template <typename StrategyT = BruteForceStrategy>
+class MockRoadGeometry : public geometry_base::RoadGeometry<StrategyT> {
  public:
   MALIPUT_NO_COPY_NO_MOVE_NO_ASSIGN(MockRoadGeometry);
 
@@ -81,7 +82,7 @@ class MockRoadGeometry : public geometry_base::RoadGeometry {
   ///         `angular_tolerance` or `scale_length` is non-positive.
   MockRoadGeometry(const api::RoadGeometryId& id, double linear_tolerance, double angular_tolerance,
                    double scale_length, const math::Vector3& inertial_to_backend_frame_translation)
-      : geometry_base::RoadGeometry(id, linear_tolerance, angular_tolerance, scale_length,
+      : geometry_base::RoadGeometry<StrategyT>(id, linear_tolerance, angular_tolerance, scale_length,
                                     inertial_to_backend_frame_translation) {}
 
  private:

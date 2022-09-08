@@ -45,6 +45,7 @@
 namespace maliput {
 namespace geometry_base {
 
+template <typename StrategyT>
 class RoadGeometry;
 
 /// geometry_base's implementation of api::Junction.
@@ -95,7 +96,8 @@ class Junction : public api::Junction {
   // @pre `segment_indexing_callback` is non-empty.
   // @pre `lane_indexing_callback` is non-empty.
   // @pre Parent RoadGeometry and the callbacks have not already been set.
-  void AttachToRoadGeometry(common::Passkey<RoadGeometry>, const api::RoadGeometry* road_geometry,
+  template <typename StrategyT>
+  void AttachToRoadGeometry(common::Passkey<RoadGeometry<StrategyT>>, const api::RoadGeometry* road_geometry,
                             const std::function<void(const api::Segment*)>& segment_indexing_callback,
                             const std::function<void(const api::Lane*)>& lane_indexing_callback);
 

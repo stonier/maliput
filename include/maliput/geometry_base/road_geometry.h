@@ -69,6 +69,7 @@ namespace geometry_base {
 //                         Lane::ToLanePosition().
 
 /// geometry_base's implementation of api::RoadGeometry.
+template <typename StrategyT = BruteForceStrategy>
 class RoadGeometry : public api::RoadGeometry {
  public:
   MALIPUT_NO_COPY_NO_MOVE_NO_ASSIGN(RoadGeometry);
@@ -84,7 +85,7 @@ class RoadGeometry : public api::RoadGeometry {
   ///
   /// @throws maliput::common::assertion_error if either `linear_tolerance` or
   ///         `angular_tolerance` or `scale_length` is non-positive.
-  template <typename StrategyT = KDTreeStrategy>
+  
   RoadGeometry(const api::RoadGeometryId& id, double linear_tolerance, double angular_tolerance, double scale_length,
                const math::Vector3& inertial_to_backend_frame_translation)
       : id_(id),
@@ -134,9 +135,10 @@ class RoadGeometry : public api::RoadGeometry {
     return raw_pointer;
   }
 
-  ~RoadGeometry() override = default;
+  /// Calls the initialization method of the strategy.
+  void InitializeStrategy() { strategy_->Init(); }
 
-  // void SpacialReorganization(const SpacialReorganization::Type& type);
+  ~RoadGeometry() override = default;
 
  private:
   virtual api::RoadPositionResult DoToRoadPosition(

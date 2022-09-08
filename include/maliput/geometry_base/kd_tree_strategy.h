@@ -67,7 +67,7 @@ class KDTreeStrategy : public StrategyBase {
     return do_closest_lanes(point, distance);
   }
 
-  static constexpr double kStrictLinearTolerance{1e-12};  // [m]
+  static constexpr double kLinearTolerance{1e-12};  // [m]
 
  private:
   api::RoadPositionResult DoToRoadPosition(const api::InertialPosition& inertial_position,

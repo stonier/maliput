@@ -34,7 +34,8 @@
 namespace maliput {
 namespace geometry_base {
 
-void Junction::AttachToRoadGeometry(common::Passkey<RoadGeometry>, const api::RoadGeometry* road_geometry,
+template <typename StrategyT>
+void Junction::AttachToRoadGeometry(common::Passkey<RoadGeometry<StrategyT>>, const api::RoadGeometry* road_geometry,
                                     const std::function<void(const api::Segment*)>& segment_indexing_callback,
                                     const std::function<void(const api::Lane*)>& lane_indexing_callback) {
   // Parameter checks

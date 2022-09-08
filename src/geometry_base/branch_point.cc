@@ -37,7 +37,8 @@ namespace geometry_base {
 
 BranchPoint::BranchPoint(const api::BranchPointId& id) : id_(id) {}
 
-void BranchPoint::AttachToRoadGeometry(common::Passkey<RoadGeometry>, const api::RoadGeometry* road_geometry) {
+template <typename StrategyT>
+void BranchPoint::AttachToRoadGeometry(common::Passkey<RoadGeometry<StrategyT>>, const api::RoadGeometry* road_geometry) {
   // Parameter checks
   MALIPUT_THROW_UNLESS(road_geometry != nullptr);
   // Preconditions
