@@ -9,15 +9,11 @@ comment:
 
 # See https://docs.codecov.com/docs/commit-status
 coverage:
+  # Disable project and patch level coverage status check in favor of
+  # individual component status checks.
   status:
-    project:
-      default:
-        target: auto
-        removed_code_behavior: fully_covered_patch
-    patch:
-      default:
-        target: auto
-        removed_code_behavior: fully_covered_patch
+    project: off
+    patch: off
 
 component_management:
   default_rules:  # default rules that will be inherited by all components
@@ -38,7 +34,7 @@ component_management:
 
 # Recommended by https://github.com/ros-tooling/action-ros-ci#integrate-action-ros-ci-with-codecov
 fixes:
-  - "ros_ws/src/*/maliput/maliput/::"
+  - "ros_ws/src/*/maliput/::"
 github_checks:
   # Disable GitHub line-by-line annotations.
   annotations: true
