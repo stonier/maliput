@@ -30,51 +30,11 @@ component_management:
         removed_code_behavior: fully_covered_patch
 
   individual_components:
-    - component_id: api  # this is an identifier that should not be changed
-      name: api  # this is a display name, and can be changed freely
+    - component_id: maliput  # this is an identifier that should not be changed
+      name: maliput  # this is a display name, and can be changed freely
       paths:
-        - include/maliput/api/**
-        - src/api/**
-    - component_id: base
-      name: base
-      paths:
-        - include/maliput/base/**
-        - src/base/**
-    - component_id: common
-      name: common
-      paths:
-        - include/maliput/common/**
-        - src/common/**
-    - component_id: geometry_base
-      name: geometry_base
-      paths:
-        - include/maliput/geometry_base/**
-        - src/geometry_base/**
-    - component_id: math
-      name: math
-      paths:
-        - include/maliput/math/**
-        - src/math/**
-    - component_id: plugin
-      name: plugin
-      paths:
-        - include/maliput/plugin/**
-        - src/plugin/**
-    - component_id: routing
-      name: routing
-      paths:
-        - include/maliput/routing/**
-        - src/routing/**
-    - component_id: test_utilities
-      name: test_utilities
-      paths:
-        - include/maliput/test_utilities/**
-        - src/test_utilities/**
-    - component_id: utilities
-      name: utilities
-      paths:
-        - include/maliput/utilities/**
-        - src/utilities/**
+        - include/**
+        - src/**
 
 # Recommended by https://github.com/ros-tooling/action-ros-ci#integrate-action-ros-ci-with-codecov
 fixes:
