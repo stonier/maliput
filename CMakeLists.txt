@@ -12,9 +12,8 @@ project(maliput LANGUAGES C CXX VERSION 3.0.0)
 message(STATUS "\n\n====== Finding 3rd Party Packages ======\n")
 
 find_package(ament_cmake REQUIRED)
-find_package(fmt 6.1.2 EXACT REQUIRED)
-find_package(gflags REQUIRED)
-find_package(yaml-cpp REQUIRED)
+find_package(fmt REQUIRED)
+# find_package(yaml-cpp REQUIRED)
 
 ##############################################################################
 # Project Configuration
@@ -70,6 +69,7 @@ add_subdirectory(src)
 
 if(BUILD_TESTING)
   find_package(ament_cmake_clang_format REQUIRED)
+  find_package(gflags REQUIRED)
   enable_testing()
   add_subdirectory(test)
   ament_clang_format(CONFIG_FILE ${CMAKE_CURRENT_SOURCE_DIR}/.clang-format)
@@ -89,6 +89,6 @@ ament_export_include_directories(include)
 ament_environment_hooks(setup.sh.in)
 ament_export_dependencies(ament_cmake)
 ament_export_dependencies(fmt)
-ament_export_dependencies(yaml-cpp)
+# ament_export_dependencies(yaml-cpp)
 ament_export_targets(${PROJECT_NAME}-targets HAS_LIBRARY_TARGET)
 ament_package()

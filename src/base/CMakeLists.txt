@@ -45,7 +45,7 @@ target_link_libraries(base
   PUBLIC
     maliput::api
     maliput::common
-    yaml-cpp
+    #yaml-cpp
 )
 
 ##############################################################################
