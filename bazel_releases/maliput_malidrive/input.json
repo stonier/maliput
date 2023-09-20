@@ -1,0 +1,19 @@
+{
+    "build_file": null,
+    "build_targets": [
+        "@maliput_malidrive//:maliput_malidrive"
+    ],
+    "compatibility_level": "1",
+    "deps": [],
+    "module_dot_bazel": "/home/danielstonier/tmp/bazel_releases/maliput_malidrive/MODULE.bazel",
+    "name": "maliput_malidrive",
+    "patch_strip": 1,
+    "patches": [],
+    "presubmit_yml": null,
+    "strip_prefix": "maliput_malidrive-0.1.4-1",
+    "test_module_build_targets": [],
+    "test_module_path": null,
+    "test_module_test_targets": [],
+    "url": "https://github.com/maliput/maliput_malidrive/releases/download/0.1.4-1/maliput_malidrive-0.1.4-1.tar.gz",
+    "version": "9.0.0"
+}

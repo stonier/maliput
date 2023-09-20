@@ -1,0 +1,24 @@
+{
+    "build_file": null,
+    "build_targets": [
+        "@tinyxml2//:tinyxml2"
+    ],
+    "compatibility_level": "1",
+    "deps": [],
+    "module_dot_bazel": "/home/danielstonier/tmp/bazel_releases/tinyxml2/MODULE.bazel",
+    "name": "tinyxml2",
+    "patch_strip": 1,
+    "patches": [
+	    "/home/danielstonier/tmp/bazel_releases/tinyxml2/build_bazel.patch",
+	    "/home/danielstonier/tmp/bazel_releases/tinyxml2/module_dot_bazel.patch"
+    ],
+    "presubmit_yml": null,
+    "strip_prefix": "tinyxml2-9.0.0",
+    "test_module_build_targets": [],
+    "test_module_path": null,
+    "test_module_test_targets": [
+	    "@tinyxml2//:xmltest"
+    ],
+    "url": "https://github.com/stonier/tinyxml2/releases/download/9.0.0/tinyxml2-9.0.0.tar.gz",
+    "version": "9.0.0"
+}

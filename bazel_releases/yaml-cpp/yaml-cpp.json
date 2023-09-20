@@ -1,0 +1,19 @@
+{
+    "build_file": null,
+    "build_targets": [
+        "//:yaml-cpp"
+    ],
+    "compatibility_level": "1",
+    "deps": [],
+    "module_dot_bazel": "/home/danielstonier/tmp/bazel_releases/yaml-cpp/MODULE.bazel",
+    "name": "yaml-cpp",
+    "patch_strip": 1,
+    "patches": ["/home/danielstonier/tmp/bazel_releases/yaml-cpp/module_dot_bazel.patch"],
+    "presubmit_yml": null,
+    "strip_prefix": "yaml-cpp-0.8.0",
+    "test_module_build_targets": [],
+    "test_module_path": null,
+    "test_module_test_targets": [],
+    "url": "https://github.com/stonier/yaml-cpp/releases/download/0.8.0/yaml-cpp-0.8.0.tar.gz",
+    "version": "0.8.0"
+}

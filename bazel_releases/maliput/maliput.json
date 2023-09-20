@@ -1,0 +1,26 @@
+{
+    "build_file": null,
+    "build_targets": [
+        "@maliput//:common",
+        "@maliput//:math",
+        "@maliput//:base",
+        "@maliput//:geometry_base",
+        "@maliput//:api",
+        "@maliput//:plugin",
+        "@maliput//:routing",
+        "@maliput//:utility"
+    ],
+    "compatibility_level": "1",
+    "deps": [],
+    "module_dot_bazel": "/home/danielstonier/tmp/bazel_releases/maliput/MODULE.bazel",
+    "name": "maliput",
+    "patch_strip": 1,
+    "patches": [],
+    "presubmit_yml": null,
+    "strip_prefix": "maliput-1.1.1-1",
+    "test_module_build_targets": [],
+    "test_module_path": null,
+    "test_module_test_targets": [],
+    "url": "https://github.com/maliput/maliput/releases/download/1.1.1-1/maliput-1.1.1-1.tar.gz",
+    "version": "1.1.1"
+}
